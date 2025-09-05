@@ -25,10 +25,10 @@ public class Roomba implements Directions {
 
 		// A new Robot should be constructed and assigned to the global (instance) variable named roomba that is declared above.
         // Make sure it starts at startX and startY location.
-
+int totalBeepers = 0; // Need to move this somewhere else.
 		World.readWorld(worldName);
 		World.setVisible(true);
-		World.setDelay(20);
+		World.setDelay(5);
 		Robot roomba = new Robot(8,8,South,1000);
 
 
@@ -46,7 +46,10 @@ public class Roomba implements Directions {
 		roomba.turnLeft();
 		roomba.move();
 		for(int i=1; i<=6; i++){
-			roomba.pickBeeper();
+			roomba.pickBeeper(); {
+				System.out.println(totalBeepers);
+				totalBeepers++;
+			}
 		}
 		roomba.move();
 		roomba.move();
@@ -54,11 +57,17 @@ public class Roomba implements Directions {
 		roomba.move();
 		while(roomba.nextToABeeper())
 		{
-			roomba.pickBeeper();
+			roomba.pickBeeper();{
+				System.out.println(totalBeepers);
+				totalBeepers++;
+			}
 		}
 		roomba.move();
 		while(roomba.nextToABeeper()){
-		roomba.pickBeeper();
+		roomba.pickBeeper();{
+			System.out.println(totalBeepers);
+				totalBeepers++;
+		}
 		}
 		roomba.turnLeft();
 		roomba.turnLeft();
@@ -69,26 +78,38 @@ public class Roomba implements Directions {
 		roomba.move();
 		roomba.move();
 		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
+			roomba.pickBeeper();{
+				System.out.println(totalBeepers);
+				totalBeepers++;
+			}
 		}
 		roomba.turnLeft();
 		roomba.move();
 		roomba.move();
 		roomba.move();
 		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
+			roomba.pickBeeper();{
+				System.out.println(totalBeepers);
+				totalBeepers++;
+			}
 		}
 		roomba.move();
 		roomba.move();
 		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
+			roomba.pickBeeper();{
+				System.out.println(totalBeepers);
+				totalBeepers++;
+			}
 		}
 		roomba.turnLeft();
 		roomba.move();
 		roomba.turnLeft();
 		roomba.move();
 		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
+			roomba.pickBeeper();{
+				System.out.println(totalBeepers);
+				totalBeepers++;
+			}
 		}
 		roomba.turnLeft();
 		roomba.turnLeft();
@@ -97,13 +118,16 @@ public class Roomba implements Directions {
 		roomba.turnLeft();
 		roomba.move();
 		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();
+			roomba.pickBeeper();{
+				System.out.println(totalBeepers);
+				totalBeepers++;
+			}
 		}
 		roomba.move();
 		
 
 
-		int totalBeepers = 0; // Need to move this somewhere else.
+		//int totalBeepers = 0; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
