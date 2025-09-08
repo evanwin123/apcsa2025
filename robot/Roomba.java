@@ -16,7 +16,7 @@ public class Roomba implements Directions {
 	}
 
 	// declared here so it is visible in all the methods!
-	private Robot roomba;
+	
 
 	// You will need to add many variables!!
 
@@ -39,94 +39,11 @@ int totalBeepers = 0; // Need to move this somewhere else.
 
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
-		roomba.move();
-		for(int i=1; i<=7; i++){
-			roomba.pickBeeper();
-		}
-		roomba.turnLeft();
-		roomba.move();
-		for(int i=1; i<=6; i++){
-			roomba.pickBeeper(); {
-				System.out.println(totalBeepers);
-				totalBeepers++;
-			}
-		}
-		roomba.move();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper())
+		while(roomba.frontIsClear())
 		{
-			roomba.pickBeeper();{
-				System.out.println(totalBeepers);
-				totalBeepers++;
-			}
+			while(roomba.nextToABeeper())
 		}
-		roomba.move();
-		while(roomba.nextToABeeper()){
-		roomba.pickBeeper();{
-			System.out.println(totalBeepers);
-				totalBeepers++;
-		}
-		}
-		roomba.turnLeft();
-		roomba.turnLeft();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();{
-				System.out.println(totalBeepers);
-				totalBeepers++;
-			}
-		}
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();{
-				System.out.println(totalBeepers);
-				totalBeepers++;
-			}
-		}
-		roomba.move();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();{
-				System.out.println(totalBeepers);
-				totalBeepers++;
-			}
-		}
-		roomba.turnLeft();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();{
-				System.out.println(totalBeepers);
-				totalBeepers++;
-			}
-		}
-		roomba.turnLeft();
-		roomba.turnLeft();
-		roomba.move();
-		roomba.move();
-		roomba.turnLeft();
-		roomba.move();
-		while(roomba.nextToABeeper()){
-			roomba.pickBeeper();{
-				System.out.println(totalBeepers);
-				totalBeepers++;
-			}
-		}
-		roomba.move();
-		
-
-
+	
 		//int totalBeepers = 0; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
