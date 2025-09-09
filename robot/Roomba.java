@@ -25,6 +25,7 @@ public class Roomba implements Directions {
 
 		// A new Robot should be constructed and assigned to the global (instance) variable named roomba that is declared above.
         // Make sure it starts at startX and startY location.
+
 int totalBeepers = 0; // Need to move this somewhere else.
 		World.readWorld(worldName);
 		World.setVisible(true);
@@ -43,6 +44,7 @@ int totalBeepers = 0; // Need to move this somewhere else.
 		{
 			while(roomba.nextToABeeper())
 			{
+				totalBeepers++;
 				roomba.pickBeeper();
 			}
 				roomba.move();
@@ -52,6 +54,7 @@ int totalBeepers = 0; // Need to move this somewhere else.
 		{
 			while(roomba.nextToABeeper())
 			{
+				totalBeepers++;
 				roomba.pickBeeper();
 			}
 				roomba.move();
@@ -59,7 +62,77 @@ int totalBeepers = 0; // Need to move this somewhere else.
 		if(roomba.facingEast())
 		{
 			roomba.turnLeft();
+			roomba.move();
+			roomba.turnLeft();
 		}
+
+		while(roomba.frontIsClear())
+		{
+			while(roomba.nextToABeeper())
+			{
+				totalBeepers++;
+				roomba.pickBeeper();
+			}
+			
+			roomba.move();
+		}
+		if(roomba.facingWest())
+		{
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.move();
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+		}
+		while(roomba.frontIsClear())
+		{
+			while(roomba.nextToABeeper())
+			{
+				totalBeepers++;
+				roomba.pickBeeper();
+			}
+			roomba.move();
+		}
+		if(roomba.facingEast())
+		{
+			roomba.turnLeft();
+			roomba.move();
+			roomba.turnLeft();
+		}
+		while(roomba.frontIsClear())
+		{
+			while(roomba.nextToABeeper())
+			{
+				totalBeepers++;
+				roomba.pickBeeper();
+			}
+			roomba.move();
+		}
+		if(roomba.facingWest())
+		{
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.move();
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+
+		}
+		while(roomba.frontIsClear())
+		{
+			while(roomba.nextToABeeper())
+			{
+				totalBeepers++;
+				roomba.pickBeeper();
+			}
+			roomba.move();
+		}
+		
+
+		
 		//int totalBeepers = 0; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
