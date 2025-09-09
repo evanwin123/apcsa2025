@@ -42,8 +42,24 @@ int totalBeepers = 0; // Need to move this somewhere else.
 		while(roomba.frontIsClear())
 		{
 			while(roomba.nextToABeeper())
+			{
+				roomba.pickBeeper();
+			}
+				roomba.move();
 		}
-	
+		roomba.turnLeft();
+		while(roomba.frontIsClear())
+		{
+			while(roomba.nextToABeeper())
+			{
+				roomba.pickBeeper();
+			}
+				roomba.move();
+		}
+		if(roomba.facingEast())
+		{
+			roomba.turnLeft();
+		}
 		//int totalBeepers = 0; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
