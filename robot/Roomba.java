@@ -12,7 +12,6 @@ public class Roomba implements Directions {
 		Roomba cleaner = new Roomba();
 		int totalBeepers = cleaner.cleanRoom(worldName, 7, 6);
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
-
 	}
 
 	// declared here so it is visible in all the methods!
@@ -22,15 +21,19 @@ public class Roomba implements Directions {
 
 
 	public int cleanRoom(String worldName, int startX, int startY) {
+		World.readWorld(worldName);
+		World.setVisible(true);
+		World.setDelay(1);
+		Robot roomba = new Robot(8,8,South,1000);
 
 		// A new Robot should be constructed and assigned to the global (instance) variable named roomba that is declared above.
         // Make sure it starts at startX and startY location.
-
+boolean done = false;
 int totalBeepers = 0; // Need to move this somewhere else.
-		World.readWorld(worldName);
-		World.setVisible(true);
-		World.setDelay(5);
-		Robot roomba = new Robot(8,8,South,1000);
+int totalSquareMoved = 0;
+int totalPiles = 0;
+
+		
 
 
 		/** This section will have all the logic that takes the Robot to every location
@@ -40,14 +43,22 @@ int totalBeepers = 0; // Need to move this somewhere else.
 
 		// the line below causes a null pointer exception
 		// what is that and why are we getting it?
+		while(!done)
+		{
 		while(roomba.frontIsClear())
 		{
+		
+		
 			while(roomba.nextToABeeper())
 			{
 				totalBeepers++;
 				roomba.pickBeeper();
+			
+				
 			}
 				roomba.move();
+				totalSquareMoved++;
+
 		}
 		roomba.turnLeft();
 		while(roomba.frontIsClear())
@@ -58,11 +69,14 @@ int totalBeepers = 0; // Need to move this somewhere else.
 				roomba.pickBeeper();
 			}
 				roomba.move();
+				totalSquareMoved++;
 		}
 		if(roomba.facingEast())
 		{
 			roomba.turnLeft();
 			roomba.move();
+			totalSquareMoved++;
+
 			roomba.turnLeft();
 		}
 
@@ -73,18 +87,65 @@ int totalBeepers = 0; // Need to move this somewhere else.
 				totalBeepers++;
 				roomba.pickBeeper();
 			}
+			roomba.move();
+			totalSquareMoved++;
+
+		}
+		if(roomba.facingWest())
+		{
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.move();
+			totalSquareMoved++;
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+		}
+		while(roomba.frontIsClear())
+		{
+			while(roomba.nextToABeeper())
+			{
+				totalBeepers++;
+				roomba.pickBeeper();
+			}
+			roomba.move();
+			totalSquareMoved++;
+
+		}
+		if(roomba.facingEast())
+		{
+			roomba.turnLeft();
+			roomba.move();
+			totalSquareMoved++;
+
+			roomba.turnLeft();
+		}
+		while(roomba.frontIsClear())
+		{
+			while(roomba.nextToABeeper())
+			{
+				totalBeepers++;
+				roomba.pickBeeper();
+			}
+			roomba.move();
+			totalSquareMoved++;
+
+		}
+		if(roomba.facingWest())
+		{
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.move();
+			totalSquareMoved++;
+			roomba.turnLeft();
+			roomba.turnLeft();
+			roomba.turnLeft();
+
+		}
+		if (done) {
 			
-			roomba.move();
-		}
-		if(roomba.facingWest())
-		{
-			roomba.turnLeft();
-			roomba.turnLeft();
-			roomba.turnLeft();
-			roomba.move();
-			roomba.turnLeft();
-			roomba.turnLeft();
-			roomba.turnLeft();
 		}
 		while(roomba.frontIsClear())
 		{
@@ -94,47 +155,17 @@ int totalBeepers = 0; // Need to move this somewhere else.
 				roomba.pickBeeper();
 			}
 			roomba.move();
-		}
-		if(roomba.facingEast())
-		{
-			roomba.turnLeft();
-			roomba.move();
-			roomba.turnLeft();
-		}
-		while(roomba.frontIsClear())
-		{
-			while(roomba.nextToABeeper())
-			{
-				totalBeepers++;
-				roomba.pickBeeper();
-			}
-			roomba.move();
-		}
-		if(roomba.facingWest())
-		{
-			roomba.turnLeft();
-			roomba.turnLeft();
-			roomba.turnLeft();
-			roomba.move();
-			roomba.turnLeft();
-			roomba.turnLeft();
-			roomba.turnLeft();
-
-		}
-		while(roomba.frontIsClear())
-		{
-			while(roomba.nextToABeeper())
-			{
-				totalBeepers++;
-				roomba.pickBeeper();
-			}
-			roomba.move();
+			totalSquareMoved++;
 		}
 		
-
+		System.out.println("Roomba total moves : " + totalSquareMoved);
+		System.out.println("The total number of piles is : " + totalPiles);
+		System.out.println("The total area of the room is : 40 moves");
 		
 		//int totalBeepers = 0; // Need to move this somewhere else.
         // This method should return the total number of beepers cleaned up.
 		return totalBeepers;
 	}
+	return totalSquareMoved;
+}
 }
