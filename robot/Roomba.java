@@ -15,6 +15,7 @@ public class Roomba implements Directions {
 		World.setVisible(true);
 		World.setDelay(0);
 		Robot roomba = new Robot(26,149,West,0);
+        //starts at the bottom right
 
 		double totalPiles = 0.0;
 		double largestPile = 0.0;
@@ -22,6 +23,7 @@ public class Roomba implements Directions {
 		double largestY = 0.0;
 		double totalBeepers = 0.0; 
 		double totalSquareMoved = 2.0;
+        //counts for the first and last space that it doesn't count
 
 		while(true) {
 			double pileSize = 0.0;
@@ -39,7 +41,7 @@ public class Roomba implements Directions {
 				}
 			}
 
-			if(roomba.frontIsClear()) {
+			if(roomba.frontIsClear()) {//checks if there is something in front
 				roomba.move();
 				totalSquareMoved++;
 			} else {
@@ -60,10 +62,10 @@ public class Roomba implements Directions {
 				}
 			}
 		}
-
+            //calculates for the avg
 		double avgPileSize = (totalPiles > 0) ? totalBeepers / totalPiles : 0.0;
 		double percentDirty = (totalSquareMoved > 0) ? (totalPiles / totalSquareMoved) * 100.0 : 0.0;
-
+        roomba.turnOff();
 		System.out.println("The total number of piles is : " + totalPiles);
 		System.out.println("The total area of the room is : " + totalSquareMoved);
 		System.out.println("The largest pile is " + largestPile);
@@ -71,7 +73,9 @@ public class Roomba implements Directions {
 		System.out.println("Roomba cleaned up a total of " + totalBeepers + " beepers.");
 		System.out.println("Average pile size: " + avgPileSize);
 		System.out.println("Percent dirty: " + percentDirty + "%");
+        //calulates for the percent dirty
 
+        
 		return totalBeepers;
 	}
 }
