@@ -25,7 +25,7 @@ public class PigLatinTranslator {
 
         return result;
     }
-
+    /
     private static String translateWord(String input) {
         System.out.println("  -> translateWord('" + input + "')");
 

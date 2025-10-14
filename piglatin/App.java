@@ -20,7 +20,7 @@ public class App {
                 - Just like CodingBat this class tries your code against various cases.
                 - It will tell you which cases return expected output or not
          */
-
+        //help
 
         // Run tests, comment out once they pass.
         int score = TestSuite.run();
