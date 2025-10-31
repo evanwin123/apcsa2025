@@ -10,7 +10,7 @@ public class Book {
     private ArrayList<String> text = new ArrayList<String>();
 
     Book() {
-        // Empty book
+
     }
 
     public void printlines(int start, int length) {
