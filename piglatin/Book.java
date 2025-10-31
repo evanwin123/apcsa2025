@@ -10,11 +10,9 @@ public class Book {
     private ArrayList<String> text = new ArrayList<String>();
 
     Book() {
-        // Empty book - no code needed here.
+        // Empty book
     }
 
-    // Helper to debug code
-    // Prints out a range of lines from a book
     public void printlines(int start, int length) {
         System.out.println("Lines " + start + " to " + (start + length) + " of book: " + title);
         for (int i = start; i < start + length; i++) {
@@ -26,52 +24,48 @@ public class Book {
         }
     }
 
-    String getTitle() {
-        return title;
-    }
-
-    void setTitle(String title) {
-        this.title = title;
-    }
-
-    String getLine(int lineNumber) {
-        return text.get(lineNumber);
-    }
-
-    int getLineCount() {
-        return text.size();
-    }
-
-    void appendLine(String line) {
-        text.add(line);
-    }
+    String getTitle() { return title; }
+    void setTitle(String title) { this.title = title; }
+    String getLine(int lineNumber) { return text.get(lineNumber); }
+    int getLineCount() { return text.size(); }
+    void appendLine(String line) { text.add(line); }
 
     public void readFromString(String title, String string) {
-        // load a book from an input string.
         this.title = title;
-
-        // TODO: use Scanner to populate the book
-        // use: text.add(line) to add a line to the book.
+        Scanner scan = new Scanner(string);
+        while (scan.hasNextLine()) {
+            text.add(scan.nextLine());
+        }
+        scan.close();
     }
 
     public void readFromUrl(String title, String url) {
-        // load a book from a URL.
-        // https://docs.oracle.com/javase/tutorial/networking/urls/readingURL.html
         this.title = title;
-
         try {
             URL bookUrl = URI.create(url).toURL();
-            // TODO: use Scanner to populate the book
-            // Scanner can open a file on a URL like this:
-            // Scanner(bookUrl.openStream())
-            // use: text.add(line) to add a line to the book.
+            Scanner scan = new Scanner(bookUrl.openStream());
+            boolean insideBook = false;
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                if (line.contains("*** START OF")) { insideBook = true; continue; }
+                if (line.contains("*** END OF")) break;
+                if (insideBook) text.add(line);
+            }
+            scan.close();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
 
     void writeToFile(String name) {
-        // TODO: Add code here to write the contents of the book to a file.
-        // Must write to file using provided name.
+        try {
+            PrintWriter out = new PrintWriter(new FileWriter(name));
+            for (String line : text) {
+                out.println(line);
+            }
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
