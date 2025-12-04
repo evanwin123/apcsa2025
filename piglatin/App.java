@@ -44,7 +44,7 @@ public class App {
             output.writeToFile("test.txt");
         }
 
-        // 🟩 Optional: once all tests pass, translate the full book
+        
         if (score >= 12) {
             System.out.println("All tests passed! Translating Romeo and Juliet...");
 
