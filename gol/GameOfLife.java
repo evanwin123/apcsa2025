@@ -13,6 +13,7 @@ public class GameOfLife implements Board {
     }
 
     // Set values on the board
+    // code
     public void set(int x, int y, int[][] data) {
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < data[0].length; j++) {
