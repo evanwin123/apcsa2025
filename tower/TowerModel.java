@@ -5,10 +5,10 @@ public class TowerModel {
     // 2d array storing game state
     private IntegerStack[] towers;
 
-    // Final tower height
+    // final tower height
     private int towerHeight = 0;
 
-    // Debug metrics
+    // debug metrics
     private int printCounter = 0;
     private int moveCounter = 0;
 
@@ -32,17 +32,33 @@ public class TowerModel {
         return towerHeight;
     }
 
-    // Move one disk from the source stack to the destination stack.
+    // move one disk from the source stack to the destination stack
     public void move(int source, int destination)
     {
         System.out.println("Move #" + ++moveCounter + " from " + source + " to " + destination);
-        // Pop the top disk off the source tower
+
+        // check if source tower is empty
+        if (towers[source].peek() == 0)
+        {
+            return;
+        }
+
+        // check if move is illegal (larger disk onto smaller disk)
+        int diskToMove = towers[source].peek();
+        int topOfDest = towers[destination].peek();
+
+        if (topOfDest != 0 && diskToMove > topOfDest)
+        {
+            // illegal move, do nothing
+            return;
+        }
+
+        // pop from source, push to destination
         int disk = towers[source].pop();
-        // Push it onto the destination tower
         towers[destination].push(disk);
     }
 
-    // Helper method to nicely print the current model state.
+    // helper method to nicely print the current model state
     public void print()
     {
         System.out.print("Print #" + ++printCounter + " Towers of Hanoi\n");
@@ -67,7 +83,7 @@ public class TowerModel {
         System.out.println();
     }
 
-    // Test instrumentation
+    // test instrumentation
     public IntegerStack[] getTowers()
     {
         return towers;
