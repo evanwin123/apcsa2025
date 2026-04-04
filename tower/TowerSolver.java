@@ -5,17 +5,18 @@ public class TowerSolver {
 
     public TowerSolver()
     {
-        // nothing to do here
+        // Nothing to do here
     }
 
     public void solve(TowerModel model)
     {
         this.model = model;
-        // call the recursive solve method
+        // Call the missing solve method (not this one)
         solve(model.getHeight(), 0, 2, 1);
     }
 
-    // overloaded recursive solve method
+    // Create an overloaded solve(...) method
+    // This new method will be recursive (call itself)
     private void solve(int n, int from, int to, int aux)
     {
         // base case: no disks to move, just return
