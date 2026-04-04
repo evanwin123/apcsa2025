@@ -83,7 +83,7 @@ public class TowerModel {
         System.out.println();
     }
 
-    // test instrumentation
+    // test instrumentation 2
     public IntegerStack[] getTowers()
     {
         return towers;
