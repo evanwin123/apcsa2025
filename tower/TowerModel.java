@@ -12,18 +12,6 @@ public class TowerModel {
     private int printCounter = 0;
     private int moveCounter = 0;
 
-    /* This class implements a model of a tower of Hanoi game.
-
-        |    |    |
-        =    |    |
-       ===   |    |
-      =====  |    |
-     ------------------
-        0    1    2
-
-     Example of a game of height three in the starting position.
-
-    */
     public TowerModel(int height)
     {
         towerHeight = height;
@@ -44,12 +32,14 @@ public class TowerModel {
         return towerHeight;
     }
 
-
     // Move one disk from the source stack to the destination stack.
     public void move(int source, int destination)
     {
         System.out.println("Move #" + ++moveCounter + " from " + source + " to " + destination);
-        // TODO!!
+        // Pop the top disk off the source tower
+        int disk = towers[source].pop();
+        // Push it onto the destination tower
+        towers[destination].push(disk);
     }
 
     // Helper method to nicely print the current model state.
